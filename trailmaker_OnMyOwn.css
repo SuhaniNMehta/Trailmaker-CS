@@ -1,0 +1,9 @@
+/*CSS script for Trailmaker Project*/
+#bookmarks,#new-trail{
+			   float:left;
+			   width:48%;
+			   margin-right:1%;
+			   min-height:300px;
+			   border: 1px solid #666;
+			   }
+ 
