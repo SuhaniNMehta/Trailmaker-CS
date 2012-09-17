@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+    <meta charset="utf-8">
+		<title>Delicious Trailmaker</title>
+<link rel="stylesheet" type="text/css" href="trailmaker_OnMyOwn.css" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script><!-- Google-hosted jQuery -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/jquery-ui.min.js"></script>	<!-- Google-hosted jQuery UI -->
+	<script type="text/javascript" src="trailmaker_OnMyOwn.js"></script>
+				
+	</head>
+<body>
+	<div id="page">
+	<h1> On My Own</h1>
+     	<form id="load-bookmarks" method="get">
+     	<h2 id="enter_a_delicious_username">Enter a Delicious Username:</h2>
+     		<input type="text" name="username" id="username" value=""/>
+			<input type="submit" value="Get Bookmarks"/>
+		</form>
+		
+		<div id="bookmarks">
+		<h2>Bookmarks</h2>
+			<ul></ul>
+		</div>
+		
+		<div id="new-trail">
+		<h2 >New Trail</h2>
+			<ul></ul>
+			<form id="save-trail" method="post">
+				  Username: <input id="save-username" type="text" name="save-username"/> <br>
+				  Password: <input id="save-password" type="password" name="save-password"/> <br>
+				  <input type="submit" name="make-trail" value="Make New Trail" id="make-trail" />
+			</form>
+		</div>
+		 
+			
+
+	</div>
+</body>
+</html>
