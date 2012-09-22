@@ -46,10 +46,12 @@
                             // this.d // description
                             // this.n // extended notes
                             // this.t // array of tags
-                            $('<li></li>').html('<a href="' + this.u + '">' + this.d + '</a>')
-								.data('extended', this.n)
-								.data('tags', this.t)
-								.appendTo('#bookmarks ul');
+                            if ($(index).find('trail:')) {
+                                $('<li></li>').html('<a href="' + this.u + '">' + this.d + '</a>' + ': ' + this.t)
+    								.data('extended', this.n)
+    								.data('tags', this.t)
+    								.appendTo('#bookmarks ul');
+                            }
                         });
 						$('#bookmarks li').draggable({revert: true});
                     });
