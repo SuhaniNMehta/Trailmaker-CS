@@ -36,7 +36,7 @@ var delicious={};
 							
     				  	 });
 						 
-	
+						 makeBoxesSameHeight();
 						
 						 $('#bookmarks li').draggable({revert: true});
 				
@@ -45,7 +45,7 @@ var delicious={};
 						$('#Get-submit').attr('value','Add Bookmarks');
 						$('#enter').text("Enter another username to add more bookmarks to the list");
 						
-						makeBoxesSameHeight();
+						
     				});
 					
 					return false;
@@ -187,6 +187,9 @@ var delicious={};
 				  delicious.password=$('#save-password').val();
 				  delicious.stepNum=0;
 				  saveTrail();
+				  
+				  //RESETTING NEW TRAIL HEADING TO DEFAULT
+				  $('#new-trail h2').text('New Trail');
 				  return false;
 				 });
 				 function saveTrail()

@@ -6,6 +6,7 @@
                margin-left:.5%;
 			   min-height:300px;
 			   border: 1px solid #666;
+               overflow:auto;
 			   }
 #Block{
 float:left;
@@ -19,10 +20,16 @@ margin-left:.5%;
  min-height:300px;
  border: 1px solid #666;
  width:100%;
+ word-wrap:break-word;
+ overflow:auto;
  }
  
 #SaveTrail{
  position:relative;
 margin-top:50%;
 }
+
+#links,#tags{
+  width:100%;
+  word-wrap:break-word;}
 
