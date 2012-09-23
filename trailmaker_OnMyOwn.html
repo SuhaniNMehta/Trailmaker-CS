@@ -11,28 +11,46 @@
 	</head>
 <body>
 	<div id="page">
-	<h1> On My Own</h1>
+	<h1> Trailmaker Project - Carinne and Suhani</h1>
      	<form id="load-bookmarks" method="get">
-     	<h2 id="enter_a_delicious_username">Enter a Delicious Username:</h2>
+     	<h3 id="enter">Enter a Delicious Username:</h3>
      		<input type="text" name="username" id="username" value=""/>
-			<input type="submit" value="Get Bookmarks"/>
+			<input type="submit" value="Get Bookmarks" id="Get-submit"/>
 		</form>
+		<br>
+		 <form id="Search">
+		 <input type="text" name="searchTitle" id="searchTitle" value="" placeholder="Search In Only Title" width="150px">
+		 <input type="text" name="searchTags" id="searchTags" value="" placeholder="Search In Only Tags" width="150px">
+		 <input type="text" name="searchText" id="searchText" value="" placeholder="Search In Title & Tags" width="150px">
+		 </form>
 		
+		 <br>
+		 <h4 id="drag"> 1. Drag bookmarks from left box to right box to add a link to new trail <br>
+		 2. Drag bookmarks from right box to left box to remove a link from new trail</h4>
 		<div id="bookmarks">
 		<h2>Bookmarks</h2>
+	
 			<ul></ul>
 		</div>
+		<div id="Block">
+    		<div id="new-trail" >
+    		<h2>New Trail</h2>
+	
+    			<ul></ul>
+    		</div>
 		
-		<div id="new-trail">
-		<h2 >New Trail</h2>
-			<ul></ul>
-			<form id="save-trail" method="post">
-				  Username: <input id="save-username" type="text" name="save-username"/> <br>
-				  Password: <input id="save-password" type="password" name="save-password"/> <br>
+			<div id="SaveTrail" >
+			Save this Trail by entering username and password<br><br>
+			 <form id="save-trail" method="post">
+				  Username: <input id="save-username" type="text" name="save-username"/> <br><br>
+				  Password: <input id="save-password" type="password" name="save-password"/> <br><br>
 				  <input type="submit" name="make-trail" value="Make New Trail" id="make-trail" />
 			</form>
 		</div>
-		 
+		
+		
+		
+		
 			
 
 	</div>

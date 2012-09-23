@@ -3,45 +3,185 @@
 var delicious={};
 				$(document).ready(function()
 				{
+				
+					$('#drag').hide();
+					
+					//CLEAR ALL TEXT BOXES
+					$('#searchTitle').val("");
+					$('#searchTags').val("");
+					$('#searchText').val("");
+					$('#save-username').val("");
+					$('#save-password').val("");
+					$('#username').val("");
 					
     				$('#load-bookmarks').submit(function()
 					{
 					    
     					var username=$('#username').val();
 						$('#username').val('');
-						
+						$('#drag').show();
+			
+
     					$.getJSON('http://feeds.delicious.com/v2/json/'+username+'?callback=?',function(json)
     				{
         				
         				$(json).each(function(index)
         				 {
-            				  $('<li></li>').html('<a href="'+this.u+'">'+this.d+'</a>') 
+	
+							  $('<li></li>').html('<div id="links"><b>Link:</b> <a href="'+this.u+'">'+this.d+'</a></div><div id="tags"> <b><i>Tags:</b>'+this.t+'</i></div>') 
 							  .data('extended',this.n)
             				   .data('tags',this.t)
-            				   .appendTo('#bookmarks ul');	
+            				   .appendTo('#bookmarks ul')	
+						  	   
+							
     				  	 });
-        				$('#bookmarks li').draggable({revert: true});
+						 
+	
+						
+						 $('#bookmarks li').draggable({revert: true});
+				
+						 //change text on page for better UX
+						$('#load-bookmarks h2').text('Now add bookmarks from another user');
+						$('#Get-submit').attr('value','Add Bookmarks');
+						$('#enter').text("Enter another username to add more bookmarks to the list");
+						
+						makeBoxesSameHeight();
     				});
+					
 					return false;
     				});
-				
-				
-				
-				  
-				  $('#new-trail').droppable(
-				   {
-				    accept:'li',
-					drop:function(event,ui)
-					{
-					 $(ui.draggable).draggable('disable').css({top: '0px', left: '0px'}).appendTo('#new-trail ul');
+					function makeBoxesSameHeight()
+				{
+				 		//Make boxes of the same height
+						heightOfB=$('#bookmarks').height();
+						heightOfN=$('#new-trail').height();
+						if (heightOfB < heightOfN)
+						{
+						 $('#bookmarks').css("height",heightOfN);
+						 }
+						 else
+						 {
+						  $('#new-trail').css("height",heightOfB);
+						 }
+
+				}
+					//SEARCH FUNCTIONALITY- SEARCH TITLES
+				$('#searchTitle').keyup(function(event) {
+													   var search_text = $('#searchTitle').val();
+													
+
+														$('#bookmarks ul li #links').each(function(index){
+														
+                 														if($(this).html().toLowerCase().indexOf(search_text) < 0) {
+																		
+                																							 $(this).parent().hide();
+																											 //HIDE THE TAGS PART
+																											 //$(this).siblings().hide();
+                 																							
+                																							
+                																							 }	
+                														else {
+                                                                				
+                                                                				
+																				$(this).parent().show();
+																				//SHOW THE TAGS PART
+																				 //$(this).siblings().show();
+                                                                				
+                                                                			}
+                                                        		
+                                                        	});
+															makeBoxesSameHeight();
+                                                        });
+ 
 					
+				//SEARCH FUNCTIONALITY- SEARCH TAGS
+				$('#searchTags').keyup(function(event) {
+													   var search_text = $('#searchTags').val();
+													
+
+														$('#bookmarks ul li #tags').each(function(index){
+														
+                 														if($(this).html().toLowerCase().indexOf(search_text) < 0) {
+                																							 $(this).parent().hide();
+																											 //HIDE THE LINKS PART
+																											 //$(this).siblings().hide();
+                 																							
+                																							
+                																							 }	
+                														else {
+                                                                				
+                                                                				
+																				$(this).parent().show();
+																				//SHOW THE LINKS PART
+																				 //$(this).siblings().show();
+                                                                				
+                                                                			}
+                                                        		
+                                                        	});
+															makeBoxesSameHeight();
+                                                        });
+ 
+              					
+				//SEARCH FUNCTIONALITY- SEARCH ALL
+				$('#searchText').keyup(function(event) {
+													   var search_text = $('#searchText').val();
+													
+
+														$('#bookmarks li' ).each(function(index){
+													
+														
+                 														if( $(this).html().toLowerCase().indexOf(search_text) < 0 ) {
+                																							 $(this).hide();
+                 																							
+                																							
+                																							 }	
+                														else {
+                                                                				
+                                                                				
+																				$(this).show();
+																				
+                                                                				
+                                                                			}
+                                                        		
+                                                        	});
+															makeBoxesSameHeight();
+                                                        });
+ 
+				$('#new-trail').droppable(
+				{
+				accept:'li',
+				drop:function(event,ui)
+					{
+					 $(ui.draggable).css({top:'0px',left:'0px'}).appendTo('#new-trail ul');
+					 //HIDING TAGS PART OF THE LINK
+					 (($(ui.draggable).children('#tags'))).hide();
+					 
+					 
+					 
+					makeBoxesSameHeight();
 				    }
 				   }); 
-
-				 $('#new-trail ul').sortable();
+				   
+				   $('#bookmarks').droppable(
+				{
+				accept:'li',
+				drop:function(event,ui)
+					{
+					
+					 $(ui.draggable).css({top:'0px',left:'0px'}).appendTo('#bookmarks ul');
+					 //SHOWING TAGS PART OF THE LINK
+					 (($(ui.draggable).children('#tags'))).show();
+					 
+					 
+					makeBoxesSameHeight();
+				    }
+				   }); 
+				
+				  
+					 $('#new-trail ul').sortable();
 				 $('#save-trail').submit(function()
 				 {
-				
+				//Saving a new trail to a new username
 				  $('#new-trail h2').text(prompt('Enter a name for your trail')||'My New Trail');
 				  delicious.username=$('#save-username').val();
 				  delicious.password=$('#save-password').val();
@@ -78,13 +218,10 @@ var delicious={};
             $('#new-trail li:first').remove(); // Remove the bookmark we just saved
             if ($('#new-trail li').length > 0) {
 		
-                // If there are any bookmarks left to save
-                // Save the next bookmark in the trail in 1000ms (1 second)
-                // We have to wait this period of time to comply with the
-                // terms of the Delicious API. If we don't we may have access denied.
+              
                 setTimeout(saveTrail, 1000);
             } else {
-                // We're done saving the trail
+               
                 delicious.password = null; // Don't store the user's password any longer than we need to
                 alert ("Your trail has been saved!");
             }
