@@ -1,35 +1,58 @@
 /*CSS script for Trailmaker Project*/
+#content {
+    font-family: arial, helvetica, sans-serif;
+    background-color: #9DD6F5;
+}
+
 #bookmarks{
-			   float:left;
-			   width:48%;
-			   margin-right:1%;
-               margin-left:.5%;
-			   min-height:300px;
-			   border: 1px solid #666;
-               overflow:auto;
-			   }
+	float:left;
+	width:48%;
+	margin-right:1%;
+	margin-left:.5%;
+	min-height:300px;
+	background-color: #fff;
+	border-radius:50px;
+	padding: 5px;
+	overflow:auto;
+}
+
 #Block{
-float:left;
-width:48%;
-margin-right:1%;
-margin-left:.5%;
- }
+	float:left;
+	width:48%;
+	margin-right:1%;
+	margin-left:.5%;
+}
  
- #new-trail{
- float:left;
- min-height:300px;
- border: 1px solid #666;
- width:100%;
- word-wrap:break-word;
- overflow:auto;
- }
+#new-trail{
+	float:left;
+	min-height:300px;
+	background-color: #fff;
+	border-radius:50px;
+	width:100%;
+	padding: 5px;
+	word-wrap:break-word;
+	overflow:auto;
+}
  
 #SaveTrail{
- position:relative;
-margin-top:50%;
+	position:relative;
+	margin-top:50%;
 }
 
 #links,#tags{
-  width:100%;
-  word-wrap:break-word;}
+	width:100%;
+	word-wrap:break-word;
+}
 
+iframe {
+	float: left;
+	width: 94%;
+	margin-right: 1%;
+	min-height: 250px;
+	border-radius:20px;
+	padding: 5px;
+}
+
+li {
+	font-size: .8em;
+}

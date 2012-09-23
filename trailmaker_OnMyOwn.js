@@ -43,13 +43,20 @@ var delicious={};
 						 //change text on page for better UX
 						$('#load-bookmarks h2').text('Now add bookmarks from another user');
 						$('#Get-submit').attr('value','Add Bookmarks');
-						$('#enter').text("Enter another username to add more bookmarks to the list");
+						$('#enter').text("Enter another username to add more bookmarks to the list").css('color', '#E3052D');
 						
 						
     				});
 					
 					return false;
     				});
+
+					$('a').live('click', function() {
+	                    $('#iframe-box').empty();
+	                    $('<iframe src="'+this.href+'"></iframe>').appendTo('#iframe-box');
+	                    return false;
+                	});
+
 					function makeBoxesSameHeight()
 				{
 				 		//Make boxes of the same height
