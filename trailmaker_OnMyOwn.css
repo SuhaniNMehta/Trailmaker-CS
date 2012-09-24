@@ -1,7 +1,9 @@
 /*CSS script for Trailmaker Project*/
 #content {
-    font-family: arial, helvetica, sans-serif;
+    font-family: cambria, helvetica, sans-serif;
     background-color: #D2CED9;
+    line-height:125%;
+    font-size:large;
 }
 
 #bookmarks{
